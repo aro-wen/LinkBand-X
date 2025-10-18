@@ -1,0 +1,10 @@
+﻿# Node / Python / env
+node_modules/
+.env
+__pycache__/
+dist/
+build/
+.python-version
+# Editor
+.vscode/
+.DS_Store
