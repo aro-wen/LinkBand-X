@@ -1,142 +1,289 @@
-# 📡 LinkBand-X  
-**Mesh-Enabled Distress and Positioning System for Squad-Level Tactical Communication**
+# 📡 LinkBand-X
+
+<div align="center">
+
+![ESP32](https://img.shields.io/badge/ESP32-Embedded_Systems-E7352C?style=for-the-badge\&logo=espressif)
+![LoRa](https://img.shields.io/badge/LoRa-Mesh_Networking-blue?style=for-the-badge)
+![IoT](https://img.shields.io/badge/IoT-Tactical_Communication-orange?style=for-the-badge)
+![Python](https://img.shields.io/badge/Python-Dashboard-3776AB?style=for-the-badge\&logo=python)
+![Status](https://img.shields.io/badge/Status-Prototype_Validated-success?style=for-the-badge)
+
+### Mesh-Enabled Distress and Positioning System for Squad-Level Tactical Communication
 
 🏆 **AFP Ideathon 2025 – 1st Runner-Up**
 
-LinkBand-X is an embedded, wearable communication system designed to enhance **squad-level situational awareness, positioning, and casualty response** in **GPS-denied and infrastructure-limited environments**.  
-It leverages **LoRa mesh networking**, **RSSI–ToF data fusion**, and **encrypted distress signaling** to provide resilient, low-power tactical communication for military and training operations.
+A wearable defense IoT platform that enables GPS-independent positioning, distress signaling, and resilient squad-level communication using LoRa mesh networking.
+
+</div>
 
 ---
 
-## 🧭 Project Overview
-Modern tactical units often operate in environments where **GPS, cellular networks, and centralized communication systems are unreliable or unavailable**. Electronic warfare, terrain obstruction, and infrastructure disruption significantly increase mission risk and delay casualty response.
+## 🎖️ Competition Recognition
 
-**LinkBand-X** addresses this gap through a **decentralized, self-healing mesh network** of wearable devices that:
-- Provide **real-time relative positioning**
-- Enable **automatic and manual distress signaling**
-- Operate independently of satellites or cellular infrastructure
-- Maintain communication resilience under node failure or signal loss
+**LinkBand-X** was developed and presented during the **AFP Ideathon 2025**, where it was awarded:
 
----
+🥈 **1st Runner-Up**
 
-## ❗ Problem Statement
-Squad-level units face persistent challenges:
-- Delayed casualty detection and response  
-- Reduced coordination in obstructed or hostile environments  
-- Overdependence on voice radio communication  
-- Vulnerability of GPS and centralized networks to jamming or spoofing  
-- Increased cognitive load from manual status updates  
-
-These limitations degrade decision-making speed and increase operational risk—especially in high-intensity missions where seconds are critical.
+The project was recognized for its innovative application of embedded systems, wireless communication, and tactical situational awareness technologies to address real-world military communication challenges.
 
 ---
 
-## ✅ Proposed Solution
-LinkBand-X introduces a **peer-to-peer wearable communication platform** that enables:
-- Direct device-to-device messaging  
-- Continuous real-time position sharing  
-- Automated casualty detection using inertial sensing  
-- Secure distress alert forwarding to a base station  
+## 📖 Overview
 
-The system removes reliance on fixed infrastructure while maintaining **secure, low-latency tactical awareness**.
+Modern tactical operations often occur in environments where traditional communication infrastructure is unavailable or compromised.
 
----
+GPS signals may be degraded or jammed, cellular coverage may be nonexistent, and centralized communication systems may become unreliable during combat or disaster-response scenarios.
 
-## 💡 Key Capabilities & Value
-- 🚑 **Immediate distress and casualty alerts**
-- 📍 **GPS-independent positioning** using RSSI and Time-of-Flight data fusion
-- 👥 **Enhanced squad coordination** via real-time visualization
-- 🔐 **Encrypted communication** with anti-jamming techniques
-- 🧠 **Reduced cognitive load** for dismounted soldiers
-- 🎓 **Dual-use** for training and live operations
+**LinkBand-X** provides a decentralized communication solution through a network of wearable devices capable of:
 
-Field trials demonstrated:
-- **<10 m localization accuracy**
-- **>90% message delivery reliability at 350 m**
-- Reliable operation in infrastructure-denied environments
+* Real-time squad awareness
+* Relative positioning
+* Distress alert propagation
+* Casualty detection
+* Infrastructure-independent communication
+
+The system operates using a self-healing LoRa mesh network, ensuring communication continuity even when individual nodes become unavailable.
 
 ---
 
-## 🧩 System Architecture
+## 🚨 Problem Statement
 
-### Hardware Platform
-- **MCU:** ESP32 (LoRa 32 Development Kit)
-- **Long-Range Communication:**  
-  - LoRa (SX1276 / SX1262) using Chirp Spread Spectrum (CSS)
-- **Short-Range Communication:**  
-  - ESP-NOW (low-latency, infrastructure-free)
-- **Positioning:**  
-  - RSSI & Time-of-Flight (ToF) data fusion  
-  - Optional GNSS (UC6580) fallback
-- **Sensors:**  
-  - Pulse / physiological sensor  
-  - Expandable IMU for fall detection
-- **Form Factor:**  
-  - Wearable beacon (dog tag / wrist-mounted)
-- **Power:**  
-  - Ultra-low power operation for extended missions
+Squad-level units frequently face:
+
+* Delayed casualty identification
+* Limited situational awareness
+* Dependence on voice radio communication
+* GPS spoofing and jamming risks
+* Communication blackouts in obstructed environments
+* Increased cognitive workload from manual reporting
+
+These limitations can slow decision-making and reduce operational effectiveness during critical missions.
 
 ---
 
-## 🧠 Software & Data Flow
-- **Networking:**  
-  - Fully decentralized LoRa mesh  
-  - Each node acts as transmitter and relay
-- **Distress Handling:**  
-  - Manual SOS button  
-  - Automated alerts from sensor data
-- **Security:**  
-  - AES-encrypted payloads  
-  - Frequency-Hopping Spread Spectrum (FHSS)
-- **Base Station:**  
-  - LoRa USB receiver  
-  - Python (Flask / Streamlit) dashboard  
-  - SQLite database for mission logging
+## 💡 Proposed Solution
+
+LinkBand-X introduces a wearable peer-to-peer communication platform that provides:
+
+### 📍 Position Awareness
+
+* GPS-independent localization
+* RSSI and Time-of-Flight data fusion
+* Relative position estimation between squad members
+
+### 🚑 Distress Detection
+
+* Manual SOS activation
+* Automated emergency detection
+* Real-time alert propagation through the mesh network
+
+### 📡 Communication Resilience
+
+* Infrastructure-free operation
+* Self-healing LoRa mesh routing
+* Node-to-node message relaying
+
+### 🔐 Secure Communication
+
+* AES-encrypted payloads
+* Frequency-Hopping Spread Spectrum (FHSS)
+* Anti-jamming communication techniques
 
 ---
 
-## 📊 Base Station Dashboard
-- Visualizes:
-  - Soldier positions
-  - Distress alerts
-  - Signal strength and timestamps
-- Logs mission data locally for:
-  - After-action review
-  - Training analysis
-- Operates fully offline
+## 🏗️ System Architecture
+
+```text
+Wearable Node
+│
+├── ESP32 LoRa Development Kit
+├── Pulse Sensor
+├── Optional IMU
+├── SOS Button
+│
+▼
+LoRa Mesh Network
+│
+├── Node Relay
+├── Distress Forwarding
+├── Position Sharing
+└── Status Updates
+│
+▼
+Base Station
+│
+├── LoRa Receiver
+├── Python Dashboard
+├── SQLite Database
+└── Mission Monitoring
+```
 
 ---
 
-## 🪖 Military Relevance
-LinkBand-X directly supports **AFP modernization goals** by strengthening:
-- Tactical communication resilience  
-- Squad-level command and control  
-- Casualty survivability in contested environments  
+## ⚙️ Hardware Components
 
-Its **LoRa-based mesh architecture** ensures:
-- Operation in urban, mountainous, forested, and underground terrain
-- Resistance to GPS jamming and spoofing
-- Continuous operation during communication blackouts
-
-The system is **modular and scalable**, enabling deployment across:
-- Wearable soldier systems
-- Unmanned platforms
-- Fixed tactical sensors  
-
-This positions LinkBand-X as a **defense IoT enabler** and a force multiplier for small-unit operations.
+| Component                   | Purpose                    |
+| --------------------------- | -------------------------- |
+| ESP32 LoRa Development Kit  | Main Processing Unit       |
+| SX1276 / SX1262 LoRa Module | Long-range communication   |
+| Pulse Sensor                | Physiological monitoring   |
+| IMU (Optional)              | Fall and motion detection  |
+| UC6580 GNSS Module          | Optional GPS fallback      |
+| SOS Button                  | Manual distress activation |
 
 ---
 
-## 📌 Status
-🧪 Prototype & field validation completed  
-🚀 Ongoing improvements for scalability and robustness  
+## 🛠️ Technology Stack
+
+### Embedded Systems
+
+* ESP32
+* Arduino Framework
+* ESP-NOW
+* LoRa
+
+### Networking
+
+* LoRa Mesh Networking
+* RSSI Localization
+* Time-of-Flight Estimation
+* FHSS
+
+### Software
+
+* Python
+* Flask
+* Streamlit
+* SQLite
+
+### Security
+
+* AES Encryption
+* Secure Payload Transmission
+
+---
+
+## 📊 Dashboard Features
+
+The command dashboard provides:
+
+### 🗺️ Situational Awareness
+
+* Soldier positioning
+* Squad status monitoring
+* Mission tracking
+
+### 🚨 Distress Monitoring
+
+* Emergency alerts
+* Casualty notifications
+* Response tracking
+
+### 📈 Analytics
+
+* Signal strength monitoring
+* Communication logs
+* Timestamped mission events
+
+### 📝 Mission Logging
+
+* Offline data storage
+* After-action review support
+* Training evaluation records
+
+---
+
+## 📈 Performance Results
+
+Field testing demonstrated:
+
+| Metric                    | Result           |
+| ------------------------- | ---------------- |
+| Localization Accuracy     | < 10 meters      |
+| Message Delivery Rate     | > 90%            |
+| Communication Range       | Up to 350 meters |
+| Infrastructure Dependency | None             |
+
+The platform remained operational in infrastructure-denied environments while maintaining reliable message forwarding between nodes.
+
+---
+
+## 🪖 Defense Applications
+
+LinkBand-X supports:
+
+* Squad-level command and control
+* Search and rescue missions
+* Disaster response operations
+* Military field exercises
+* Tactical communication resilience
+
+The architecture is scalable and can be adapted for:
+
+* Wearable soldier systems
+* Unmanned ground vehicles
+* Fixed tactical sensors
+* Remote monitoring stations
+
+---
+
+## 🔬 Research Contributions
+
+This project explores the intersection of:
+
+* Embedded Systems
+* Internet of Things (IoT)
+* Wireless Mesh Networking
+* Tactical Communication Systems
+* Positioning and Localization
+* Defense Technology
+
+It demonstrates how low-cost commercial hardware can be leveraged to create resilient communication networks for safety-critical applications.
+
+---
+
+## 📌 Project Status
+
+| Milestone                | Status         |
+| ------------------------ | -------------- |
+| System Design            | ✅ Complete     |
+| Prototype Development    | ✅ Complete     |
+| Field Validation         | ✅ Complete     |
+| Competition Presentation | ✅ Complete     |
+| Scalability Improvements | 🚧 In Progress |
+
+---
+
+## 👩‍💻 Team
+
+Developed as part of **AFP Ideathon 2025**.
+
+**Leila Arowen A. Dumindin**
+BS Computer Engineering
+Pamantasan ng Lungsod ng Maynila
 
 ---
 
 ## 📚 References
-Key references include works on LoRa-based positioning, mesh networking for tactical communication, and wearable casualty detection systems.  
-(Full academic references available in project documentation.)
+
+Research references include studies on:
+
+* LoRa-based localization
+* Tactical mesh networking
+* Wearable emergency communication systems
+* Casualty detection technologies
+* Defense IoT architectures
+
+Full academic references are available in the project documentation.
 
 ---
 
-⭐ This project demonstrates the application of embedded systems, wireless communication, and systems engineering to real-world defense and safety challenges.
+<div align="center">
+
+### 📡 Reliable Communication When Infrastructure Fails
+
+Built with LoRa, ESP32, and a mission to improve tactical situational awareness.
+
+⭐ Star this repository if you found the project interesting.
+
+</div>
